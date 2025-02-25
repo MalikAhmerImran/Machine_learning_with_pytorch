@@ -14,3 +14,6 @@ X_train_std,X_test_std=standardize_features(x_train=X_train,x_test=X_test)
 
 model=Perceptron(eta0=0.1,random_state=1)
 model.fit(X_train_std,y_train)
+y_pred=model.predict(X_test_std)
+print("Number of wrong predictions on test data=",(y_test!=y_pred).sum())
+print("Accuracy=",model.score(X_test_std,y_test))
