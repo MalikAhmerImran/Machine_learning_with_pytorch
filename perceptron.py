@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from utils import standardize_features,training_testing_split
+from sklearn.linear_model import Perceptron
 
 data_set=pd.read_csv('datasets/IRIS.csv',encoding='utf-8')
 X=data_set.iloc[:,[2,3]].to_numpy()
@@ -11,3 +12,5 @@ X_train,X_test,y_train,y_test=training_testing_split(X,y)
 
 X_train_std,X_test_std=standardize_features(x_train=X_train,x_test=X_test)
 
+model=Perceptron(eta0=0.1,random_state=1)
+model.fit(X_train_std,y_train)
