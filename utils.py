@@ -27,6 +27,7 @@ def plot_decision_regions(X,y,classifier,resolution=0.02):
     xx1,xx2=np.meshgrid(np.arange(x1_min,x1_max,resolution),np.arange(x2_min,x2_max,resolution))
     lab=classifier.predict(np.array([xx1.ravel(),xx2.ravel()]).T)
     lab=lab.reshape(xx1.shape)
+
     plt.contourf(xx1, xx2, lab, alpha=0.3)
     plt.xlim(xx1.min(), xx1.max())
     plt.ylim(xx2.min(), xx2.max())
@@ -39,5 +40,6 @@ def plot_decision_regions(X,y,classifier,resolution=0.02):
         c=colours[idx],
         marker=markers[idx],
         label=f'Class {cl}',
-        edgecolor='black')
+        edgecolor='black',)
+    plt.legend(loc='upper left')
     plt.show()
