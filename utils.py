@@ -13,10 +13,10 @@ def standardize_features(x_train:np.ndarray,x_test:np.ndarray):
 
 
 # utility function to split the dataset into training and testing 
-
 def training_testing_split(x_samples:np.ndarray,y_samples:np.ndarray):
     X_train,X_test,y_train,y_test=train_test_split(x_samples,y_samples,test_size=0.3,random_state=1,stratify=y_samples)
     return  X_train,X_test,y_train,y_test
+
 
 def plot_decision_regions(X,y,classifier,resolution=0.02):
     markers=('o','s','>','<','^')

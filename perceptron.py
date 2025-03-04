@@ -9,7 +9,7 @@ data_set=pd.read_csv('datasets/IRIS.csv',encoding='utf-8')
 X=data_set.iloc[:,[2,3]].to_numpy()
 y=data_set.iloc[:,[4]]
 y=np.where(y.to_numpy().ravel()=='Iris-setosa',0,np.where(y.to_numpy().ravel()=='Iris-versicolor',1,2))
-
+print(y)
 X_train,X_test,y_train,y_test=training_testing_split(X,y)
 X_train_std,X_test_std=standardize_features(x_train=X_train,x_test=X_test)
 model=Perceptron(eta0=0.1,random_state=1)
