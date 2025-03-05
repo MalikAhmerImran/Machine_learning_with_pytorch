@@ -35,8 +35,17 @@ logging.info(f'{t_zeros.shape}, ---> , {t_sqeeze.shape}')
 
 
 logging.info('Multiplying the two random tensors')
-t1=2*torch.rand(5,6)-1
-t2=torch.normal(mean=0,std=1,size=(5,6))
+t1=2*torch.rand(5,2)-1
+t2=torch.normal(mean=0,std=1,size=(5,2))
 
 t3=torch.mul(t1,t2)
 logging.info(f'Multiplying the two random tensors:{t3}')
+
+
+logging.info("calculating the mean of t1.")
+t1_mean=torch.mean(t1,axis=0)
+logging.info(f'the mean of t1 is :{t1_mean}')
+
+
+t5=torch.matmul(t1,torch.transpose(t2,0,1))
+logging.info(f'Matrix multiplication between t1 and t2 tensor is:{t5}')
