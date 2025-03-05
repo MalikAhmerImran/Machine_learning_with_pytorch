@@ -4,6 +4,8 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
+torch.manual_seed(1)
+
 # creating the pytorch tensors
 a=[1,2,3]
 t_a=torch.tensor(a)
@@ -30,3 +32,11 @@ logging.info(f'Removing the unnecessary dimensions (dimensions that have size 1,
 t_zeros= torch.zeros(1, 2, 1, 4, 1)
 t_sqeeze=torch.squeeze(t_zeros,2)
 logging.info(f'{t_zeros.shape}, ---> , {t_sqeeze.shape}')
+
+
+logging.info('Multiplying the two random tensors')
+t1=2*torch.rand(5,6)-1
+t2=torch.normal(mean=0,std=1,size=(5,6))
+
+t3=torch.mul(t1,t2)
+logging.info(f'Multiplying the two random tensors:{t3}')
