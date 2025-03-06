@@ -1,6 +1,6 @@
 import torch
 import logging
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader,Dataset
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
@@ -60,5 +60,22 @@ for item in data_loader:
 # creating the batch of same sizes using the Dataloader class
 
 data_loader=DataLoader(t,batch_size=3,drop_last=False)
-for i ,batch in enumerate(data_loader):
+for i ,batch in enumerate(data_loader,1):
     logging.info(f'Batch {i}: {batch}')
+
+
+# combining two tensors into a joint dataset
+
+t_x=torch.rand([4,3],dtype=torch.float32)
+t_y=torch.arange(4)
+class JoinDataset(Dataset):
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+
+
+    def __len__(self):
+        return len(self.x)
+
+
+        
