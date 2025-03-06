@@ -1,6 +1,6 @@
 import torch
 import logging
-
+from torch.utils.data import DataLoader
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
@@ -49,3 +49,16 @@ logging.info(f'the mean of t1 is :{t1_mean}')
 
 t5=torch.matmul(t1,torch.transpose(t2,0,1))
 logging.info(f'Matrix multiplication between t1 and t2 tensor is:{t5}')
+
+# creating the datasetloader for iteration of each element
+
+t=torch.arange(6,dtype=torch.float32)
+data_loader=DataLoader(t)
+for item in data_loader:
+    logging.info(item)
+
+# creating the batch of same sizes using the Dataloader class
+
+data_loader=DataLoader(t,batch_size=3,drop_last=False)
+for i ,batch in enumerate(data_loader):
+    logging.info(f'Batch {i}: {batch}')
