@@ -97,7 +97,7 @@ for i, batch in enumerate(data_loader, 1):
 
 
 # Creating a dataset from files on your local storage disk
-image_path = "./"
+image_path = "./datasets"
 celeba_dataset = torchvision.datasets.CelebA(
-    image_path, split="train", target_type="attr", download=True
+    image_path, split="train", target_type="attr", download=False
 )
