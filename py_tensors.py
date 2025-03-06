@@ -68,6 +68,7 @@ for i ,batch in enumerate(data_loader,1):
 
 t_x=torch.rand([4,3],dtype=torch.float32)
 t_y=torch.arange(4)
+
 class JoinDataset(Dataset):
     def __init__(self,x,y):
         self.x=x
@@ -76,6 +77,13 @@ class JoinDataset(Dataset):
 
     def __len__(self):
         return len(self.x)
-
+    
+    def __getitem__(self, index):
+        return self.x[index],self.y[index]
+    
+    
+joint_dataset=JoinDataset(t_x,t_y)
+for example in joint_dataset:
+    print(' x: ', example[0], ' y: ', example[1])
 
         
