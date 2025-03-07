@@ -2,6 +2,8 @@ import torch
 import logging
 import torchvision
 from torch.utils.data import DataLoader, Dataset
+from itertools import islice
+import matplotlib.pyplot as plt
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
@@ -106,3 +108,10 @@ celeba_dataset = torchvision.datasets.CelebA(
 assert isinstance(celeba_dataset,torch.utils.data.Dataset)
 example=next(iter(celeba_dataset))
 print(example)
+fig = plt.figure(figsize=(12, 8))
+for i, (image, attributes) in islice(enumerate(celeba_dataset), 18):
+    ax = fig.add_subplot(3, 6, i+1)
+    ax.set_xticks([]); ax.set_yticks([])
+    ax.imshow(image)
+    ax.set_title(f'{attributes[31]}', size=15)
+plt.show()
