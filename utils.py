@@ -49,3 +49,7 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
         )
     plt.legend(loc="upper left")
     plt.show()
+
+# Utility function to  standardize the data samples
+def standardization(data):
+   return (data-np.mean(data))/np.std(data)
