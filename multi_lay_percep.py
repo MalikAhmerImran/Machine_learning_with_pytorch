@@ -67,3 +67,7 @@ ax.set_title('Training accuracy', size=15)
 ax.set_xlabel('Epoch', size=15)
 ax.tick_params(axis='both', which='major', labelsize=15)
 plt.show()
+
+# saving the model weights
+path = 'iris_classifier.pt'
+torch.save(model,path)
