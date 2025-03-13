@@ -71,3 +71,7 @@ plt.show()
 # saving the model weights
 path = 'iris_classifier.pt'
 torch.save(model,path)
+
+# evalauting the model architecture
+new_model=torch.load(path,weights_only=False)
+print(new_model.eval())
