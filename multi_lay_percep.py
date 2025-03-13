@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 from torch.utils.data import TensorDataset,DataLoader
 from utils import training_testing_split,standardization
@@ -41,3 +42,28 @@ optimizer=torch.optim.Adam(model.parameters(),lr=0.001)
 num_epochs = 100
 loss_hist = [0] * num_epochs
 accuracy_hist = [0] * num_epochs
+for epoch in range(num_epochs):
+    for x_batch,y_batch in train_dl:
+        x_batch=x_batch.float()
+        pred=model(x_batch)
+        loss=loss_fn(pred,y_batch)
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+        loss_hist[epoch] += loss.item()*y_batch.size(0)
+        is_correct = (torch.argmax(pred, dim=1) == y_batch).float()
+        accuracy_hist[epoch] += is_correct.mean()
+    loss_hist[epoch] /= len(train_dl.dataset)
+    accuracy_hist[epoch] /= len(train_dl.dataset)
+fig = plt.figure(figsize=(12, 5))
+ax = fig.add_subplot(1, 2, 1)
+ax.plot(loss_hist, lw=3)
+ax.set_title('Training loss', size=15)
+ax.set_xlabel('Epoch', size=15)
+ax.tick_params(axis='both', which='major', labelsize=15)
+ax = fig.add_subplot(1, 2, 2)
+ax.plot(accuracy_hist, lw=3)
+ax.set_title('Training accuracy', size=15)
+ax.set_xlabel('Epoch', size=15)
+ax.tick_params(axis='both', which='major', labelsize=15)
+plt.show()
